@@ -25,7 +25,7 @@ audio {display:none;visibility:hidden;opacity:0;width:0;height:0;}
 #cover {position:absolute;max-width:none;}
 #header {position:absolute;top:70px;width:100%;}
 #header > div {margin:0 60px;position:relative;}
-.icon-menu {font-size:20px;padding:6px 6px 5px;border-radius:2px;cursor:pointer;position:absolute;z-index:4;right:0;top:0;margin-top:-3px;background:rgba(255,255,255,.9);}
+.icon-menu {font-size:20px;padding:6px 6px 5px;border-radius:2px;cursor:pointer;position:absolute;z-index:4;right:0;top:0;margin-top:-3px;background:rgba(255,255,255,0.83);}
 .image-logo {z-index:4;position:relative;display:inline-block;-webkit-background-size:75px 32px;-moz-background-size:75px 32px;background-size:75px 32px;background-repeat:no-repeat;background-position:center center;-webkit-mask-box-image:url("/img/logo.png");background-color:white;width:75px;height:32px;mask-image:url("/img/logo.png");mask-size:contain;transition: background-color 0.5s ease-in-out;}
 body.mu .image-logo {background-color:black;}
 #vibrant {position:absolute;top:0;left:0;width:100%;height:100%;}
@@ -79,7 +79,7 @@ body.touch #top {position:relative;}
 .bar {position:absolute;height:100%;background:rgba(0,0,0,.07);z-index:-1;width:0;-webkit-transition:width .5s ease;-moz-transition:width .5s ease;transition:width .5s ease;}
 .scrollbar {position:absolute;height:2px;width:10px;top:0;background-color:#50bcb6;-webkit-transition:width .5s ease;-moz-transition:width .5s ease;transition:width .5s ease;}
 body.touch .scrollbar {display:none;}
-.nav {position:fixed;height:100%;width:100%;background:rgba(255,255,255,.97);z-index:3;top:-100%;-webkit-transition:top 0.3s cubic-bezier(0.4,0,0.2,1);-moz-transition:top 0.3s cubic-bezier(0.4,0,0.2,1);transition:top 0.3s cubic-bezier(0.4,0,0.2,1);}
+.nav {position:fixed;height:100%;width:100%;background:rgba(255,255,255,0.7);z-index:3;top:-100%;-webkit-transition:top 0.3s cubic-bezier(0.4,0,0.2,1);-moz-transition:top 0.3s cubic-bezier(0.4,0,0.2,1);transition:top 0.3s cubic-bezier(0.4,0,0.2,1);}
 body.mu {overflow:hidden;height:100%;}
 html.mu {height:100%;}
 body.mu .icon-menu {color:#333;background: none;}
@@ -200,7 +200,22 @@ h1.title {font-size:30px;color:#333;line-height:1.3;position:relative;font-weigh
 .content h6 {font-size:13px}
 .content strong {font-weight:500;}
 .content a {background:transparent;color:#1980e6;text-decoration:none;}
-.content a:hover {color:#518dca;}
+.content a:after,.content a:before{
+    content: "";/*单引号双引号都可以，但必须是英文*/
+    width: 0;
+    height: 3px; /*下划线高度*/
+    background: blue; /*下划线颜色*/
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    color:#518dca;
+    transition: all .8s ; /*css动画效果，0.8秒完成*/
+}
+.content a:hover:before {
+	left:0%; 
+    width:50%;
+ 
+}
 .content hr {margin-top:21px;margin-bottom:21px;border:0;border-top:1px solid rgba(102,128,153,0.1)}
 .content p {margin:0 0 .8em;}
 .content ul,.content ol {margin:10px 0;padding-left:20px;}
