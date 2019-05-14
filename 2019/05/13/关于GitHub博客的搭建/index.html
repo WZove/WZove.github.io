@@ -10,7 +10,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="google" content="notranslate">
     <meta name="keywords" content="Wbs,"> 
-    
+    <meta name="description" content="简介​    GitHub给用户提供了平台,让用户省去了购买服务器和注册域名的麻烦,让用户的创作力得到无限发挥.当然免费的也有免费的限制,当达到1G以后会受到GITHUB的通知邮件，上传超过50M的,"> 
     <meta name="author" content="Wbs"> 
     <link rel="alternative" href="atom.xml" title="巷猫的博客" type="application/atom+xml"> 
     <link rel="icon" href="/img/favicon.png"> 
@@ -60,7 +60,74 @@
 
         </div>
         <div class="content markdown">
-            
+            <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>​    GitHub给用户提供了平台,让用户省去了购买服务器和注册域名的麻烦,让用户的创作力得到无限发挥.当然免费的也有免费的限制,当达到1G以后会受到GITHUB的通知邮件，上传超过50M的单个文件会warning，无法上传超过100M的单个文件。目前大文件会提供一个1G的免费GIT-LFS空间.同样,GitHub也有收费方案,一个是个人账户付费方案,他提供了三种收费标准（7美元/月、12美元/月 和 22美元/月）.一个是组织账号收费方案,（有25美元/月、50美元/月、100美元/月 和 200美元/月），但同时也可以创建更多的私有版本库和拥有更大的托管空间.</p>
+<hr>
+<h1 id="创建个人博客"><a href="#创建个人博客" class="headerlink" title="创建个人博客"></a>创建个人博客</h1><h2 id="一-GitHub准备"><a href="#一-GitHub准备" class="headerlink" title="一 GitHub准备"></a>一 GitHub准备</h2><p>既然想借用GitHub的平台去展示你的博客,那首先得需要他们的一个账号,注册账号应该对于会使用电脑的孩子都不是难事,跳过注册步骤开始搭建你的代码仓库.</p>
+<p>点开GitHub的链接 <a href="https://github.com/" target="_blank" rel="noopener">https://github.com/</a> 进行登录,完成后点击右上角<strong>+</strong>按钮,点击<strong>New reponsitory</strong>,如下图所示</p>
+<p><img src="https://s2.ax1x.com/2019/05/14/EIutAJ.png" alt="EIutAJ.png"></p>
+<p>这是新建一个开源的源码仓库,注意,名称为你的用户名+.github.io的格式,例如<a href>wzove.github.io</a>,由于我已经注册,所以会提示已存在,输入完成后直接点击<strong>Create repository</strong>进行创建,如图</p>
+<p><img src="https://s2.ax1x.com/2019/05/14/EIugNd.png" alt="EIugNd.png"></p>
+<h2 id="二-HEXO介绍"><a href="#二-HEXO介绍" class="headerlink" title="二 HEXO介绍"></a>二 HEXO介绍</h2><p>Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。 </p>
+<h2 id="三-安装HEXO前提"><a href="#三-安装HEXO前提" class="headerlink" title="三 安装HEXO前提"></a>三 安装HEXO前提</h2><p>安装之前需要查看你的电脑中是否安装了<strong>Node.js</strong>和<strong>Git</strong>,若没有则继续浏览,若已安装,则浏览<strong>第四步</strong>(不会安装的宝宝们可以点击名称,教你如何安装)</p>
+<p><strong>以下便是Node.js,和Git的安装</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">软件名称</th>
+<th style="text-align:center">作用</th>
+<th style="text-align:center">下载链接</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><a href="https://www.runoob.com/nodejs/nodejs-install-setup.html" target="_blank" rel="noopener">Node.js</a></td>
+<td style="text-align:center">HEXO运行必备</td>
+<td style="text-align:center">链接：<a href="https://pan.baidu.com/s/1dX4eGPjm5z3jLhvA4JC07g" target="_blank" rel="noopener">https://pan.baidu.com/s/1dX4eGPjm5z3jLhvA4JC07g</a></td>
+</tr>
+<tr>
+<td style="text-align:center"><a href="https://www.liaoxuefeng.com/wiki/896043488029600/896067074338496" target="_blank" rel="noopener">Git</a></td>
+<td style="text-align:center">HEXO必备，上传网页到github，版本控制（当然了，对于我们来说是网站的更新）</td>
+<td style="text-align:center">链接：<a href="https://pan.baidu.com/s/186qyA5HUSnYcVrjdwLd3hQ" target="_blank" rel="noopener">https://pan.baidu.com/s/186qyA5HUSnYcVrjdwLd3hQ</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="四-安装HEXO-建站"><a href="#四-安装HEXO-建站" class="headerlink" title="四 安装HEXO,建站"></a>四 安装HEXO,建站</h2><p>在你的本地新建一个文件夹,存放将要下载的HEXO等一些源码,右键后,选择Git Base Here,如图所示</p>
+<p><img src="https://s2.ax1x.com/2019/05/14/EIGq1J.png" alt="EIGq1J.png"></p>
+<p>打开git命令行后开始安装hexo,以及本地仓库的搭建</p>
+<p><strong>注意!!!!!</strong>(1.反应比较慢,输入一行一定要等它加载完.2.把yourname换成你在github中域名的名字)</p>
+<p>命令如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo -g</span><br><span class="line">npm install hexo-cli -g</span><br><span class="line">hexo init yourname.github.io</span><br><span class="line">cd yourname.github.io</span><br><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+<p>上述过程会将GitHub默认的界面下载至本地仓库中</p>
+<p>输入命令,便将下载的源码部署到你本地</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo generate</span><br></pre></td></tr></table></figure>
+<p>开启服务命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo serve</span><br></pre></td></tr></table></figure>
+<p>出现以下信息后</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">NFO  Start processing</span><br><span class="line">INFO  Hexo is running at http://localhost:4000/. Press Ctrl+C to stop.</span><br></pre></td></tr></table></figure>
+<p>打开浏览器,输入<a href="http://localhost:4000/" target="_blank" rel="noopener">http://localhost:4000/</a> 就可以看到默认的界面</p>
+<p><strong>关于搭建自己的网页</strong></p>
+<p>打开你所存放的文件,找到<strong>_config.yml</strong>配置文件,打开后修改内容如下</p>
+<p><img src="https://s2.ax1x.com/2019/05/14/EIJf8e.png" alt="EIJf8e.png"></p>
+<p>附上代码,注意,yourname改成你自己之前配的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: https://github.com/yourname/yourname.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
+<p>保存完成后,你可以去网页上找相应的博客模版(自己写有点费劲==)down下来后,存到本地的\yourname.github.io\themes中(解压包需要解压成文件),继续在<strong>_config.yml</strong>中修改theme,将原始的名改成你下载的文件夹名称,如图所示</p>
+<p><img src="https://s2.ax1x.com/2019/05/14/EIY1PO.png" alt="EIY1PO.png"></p>
+<p>继续打开git命令窗口,先将之前的缓存清一下,命令如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br></pre></td></tr></table></figure>
+<p>再将下载的源文件导入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo generate</span><br></pre></td></tr></table></figure>
+<p>导入完成后,可在本地测试</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo serve</span><br></pre></td></tr></table></figure>
+<p>然后在网页中打开即可,若想部署到GitHub中,输入以下命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
+<p>等待片刻,会弹出窗口,输入你的github的用户名和密码就行.上传完成后,你就可以用自己的在GitHub上起的域名直接访问你刚刚所搭建的博客</p>
+<ul>
+<li><h1 id="五-结尾"><a href="#五-结尾" class="headerlink" title="五 结尾"></a>五 结尾</h1><p>至此教程已结束,望各位看观众打赏,嘻嘻~~</p>
+<h2 id="微信"><a href="#微信" class="headerlink" title="微信"></a><strong>微信</strong></h2><p><img src="https://s2.ax1x.com/2019/05/14/EItJYT.jpg" alt="EItJYT.jpg"></p>
+</li>
+</ul>
+<h2 id="支付宝"><a href="#支付宝" class="headerlink" title="支付宝"></a><strong>支付宝</strong></h2><p><img src="https://s2.ax1x.com/2019/05/14/EIt1wq.jpg" alt="EIt1wq.jpg"></p>
+
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
             <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
                 <source type="audio/mpeg" src>
@@ -82,7 +149,7 @@
     </div>
     
         <div class="side">
-            
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#简介"><span class="toc-number">1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#创建个人博客"><span class="toc-number">2.</span> <span class="toc-text">创建个人博客</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#一-GitHub准备"><span class="toc-number">2.1.</span> <span class="toc-text">一 GitHub准备</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二-HEXO介绍"><span class="toc-number">2.2.</span> <span class="toc-text">二 HEXO介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三-安装HEXO前提"><span class="toc-number">2.3.</span> <span class="toc-text">三 安装HEXO前提</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四-安装HEXO-建站"><span class="toc-number">2.4.</span> <span class="toc-text">四 安装HEXO,建站</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#五-结尾"><span class="toc-number">3.</span> <span class="toc-text">五 结尾</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#微信"><span class="toc-number">3.1.</span> <span class="toc-text">微信</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#支付宝"><span class="toc-number">3.2.</span> <span class="toc-text">支付宝</span></a></li></ol></li></ol>
         </div>
     
 </div>
