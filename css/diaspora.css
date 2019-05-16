@@ -15,7 +15,8 @@ body.loading:before {display:block;}
   100% {-moz-transform:scale(0.3);}
 }
 body {
-cursor: url(img/mouse1.png), auto;
+cursor: url(https://i.loli.net/2019/05/16/5cdd58d637abb43183.png), auto;
+cursor: url(https://i.loli.net/2019/05/16/5cdd578dc61ec48259.png), hand;
 } 
 body.loading #container,body.loading #single,body.loading .nav {opacity:0;}
 html.loading,body.loading {height:100%;overflow:hidden;}
