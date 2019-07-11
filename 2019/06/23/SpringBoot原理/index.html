@@ -78,9 +78,12 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@AutoConfigurationPackage</span></span><br><span class="line"><span class="meta">@Import</span>(&#123;EnableAutoConfigurationImportSelector.class&#125;)</span><br></pre></td></tr></table></figure>
 <p><strong>@AutoConfigurationPackage</strong>（自动配置包）</p>
 <p>​        @<strong>Import</strong>({Registrar.class})public @interface AutoConfigurationPackage {}</p>
-<p>​            Spring中的底层注解，给容器中导入一个组件，<u>作用：将主配置类的所在包及所有子包所有组件扫描至Spring容器中​</u></p>
+<p>​            Spring中的底层注解，给容器中导入一个组件，<u>作用：将主配置类的所在包及所有子包所有组件扫描至Spring容器中</u></p>
 <p>​        <strong>EnableAutoConfigurationImportSelector</strong>（导入选择器）</p>
-<p>​            </p>
+<p>​        将所有需要导入的组件以全类名的方式返回，利用selectImports方法，返回一个String[]，就会被添加到容器中；会给容器中导入非常多的自动配置类（xxxxAutoConfiguration）,<strong>作用：</strong>给容器导入该场景所需要的所有组件，并配置好这些组件。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SpringFactoriesLoader.loadFactoryNames(<span class="keyword">this</span>.getSpringFactoriesLoaderFactoryClass(), <span class="keyword">this</span>.getBeanClassLoader())；</span><br></pre></td></tr></table></figure>
+<p>从类路径下META-INF/spring.factories中获取EnableAutoConfiguration指定的值；</p>
+<p>J2EE整体整合解决方案和 自动配置都在\spring-boot-autoconfigure-1.5.21.RELEASE.jar!中</p>
 
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
             <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="true">
