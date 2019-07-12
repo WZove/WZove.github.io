@@ -120,6 +120,26 @@ Spring框架的使用经验
 <p>控制台出现以下信息，证明打包成功，并提示所存放的路径</p>
 <p><img src="https://s2.ax1x.com/2019/06/23/ZPV0r4.png" alt="ZPV0r4.png"></p>
 <p>利用java -jar xxxx.jar命令进行执行，完成部署</p>
+<h2 id="快速创建SpringBoot项目-IDE"><a href="#快速创建SpringBoot项目-IDE" class="headerlink" title="快速创建SpringBoot项目(IDE)"></a>快速创建SpringBoot项目(IDE)</h2><p><u>需要联网</u>！！！！！！！！！！</p>
+<p>首先点开IDE右上角的File按钮，选择New，再点击Project，弹出框后选择Spring Initializr，再选择您的JDK，再Next，如下图所示。</p>
+<p><img src="https://s2.ax1x.com/2019/07/11/Z2PEQI.png" alt="Z2PEQI.png"></p>
+<p>接下来便是输入您的项目名和所在包名，若出现以下问题，则说明Artifact中大小写混乱，需要改成小写。</p>
+<p><img src="https://s2.ax1x.com/2019/07/11/Z2FeIS.png" alt="Z2FeIS.png"></p>
+<p>Next后，弹出的界面如下，可供你选择所需要的模块，方便测试，我们只选择Web中的WebStart模块。</p>
+<p><img src="C:\Users\ADMINI~1\AppData\Local\Temp\1562810769422.png" alt="1562810769422"></p>
+<p>创建完毕后，目录如下所示，便完成创建</p>
+<p><img src="https://s2.ax1x.com/2019/07/11/Z2kSe0.png" alt="Z2kSe0.png"></p>
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><p>按照前面所写的进行测试就OK</p>
+<p>##特点</p>
+<ul>
+<li>主程序已经生成好，只用编写自己的逻辑</li>
+<li>resoures文件夹中的目录结构<ul>
+<li>static：保存所有静态资源：js css images；</li>
+<li>templates：保存所有模版页面；（使用嵌入式Tomcat，默认不支持JSP页面；可以使用模版引擎）</li>
+<li>application.properties：SpringBoot应用配置文件；可以修改默认设置</li>
+</ul>
+</li>
+</ul>
 
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
             <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="true">
@@ -142,7 +162,7 @@ Spring框架的使用经验
     </div>
     
         <div class="side">
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#知识储备"><span class="toc-number">1.</span> <span class="toc-text">知识储备</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#简介"><span class="toc-number">2.</span> <span class="toc-text">简介</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是SpringBoot？"><span class="toc-number">2.1.</span> <span class="toc-text">什么是SpringBoot？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SpringBoot优点"><span class="toc-number">2.2.</span> <span class="toc-text">SpringBoot优点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#大时代背景：微服务-Microservices"><span class="toc-number">2.3.</span> <span class="toc-text">大时代背景：微服务(Microservices)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#相关环境配置"><span class="toc-number">3.</span> <span class="toc-text">相关环境配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#maven配置"><span class="toc-number">3.1.</span> <span class="toc-text">maven配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IDEA配置"><span class="toc-number">3.2.</span> <span class="toc-text">IDEA配置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hello-World！"><span class="toc-number">4.</span> <span class="toc-text">Hello World！</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建Maven工程"><span class="toc-number">4.1.</span> <span class="toc-text">创建Maven工程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#关于pom文件配置"><span class="toc-number">4.2.</span> <span class="toc-text">关于pom文件配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#主程序的编写"><span class="toc-number">4.3.</span> <span class="toc-text">主程序的编写</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#主程序测试"><span class="toc-number">4.4.</span> <span class="toc-text">主程序测试</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#知识储备"><span class="toc-number">1.</span> <span class="toc-text">知识储备</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#简介"><span class="toc-number">2.</span> <span class="toc-text">简介</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是SpringBoot？"><span class="toc-number">2.1.</span> <span class="toc-text">什么是SpringBoot？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SpringBoot优点"><span class="toc-number">2.2.</span> <span class="toc-text">SpringBoot优点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#大时代背景：微服务-Microservices"><span class="toc-number">2.3.</span> <span class="toc-text">大时代背景：微服务(Microservices)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#相关环境配置"><span class="toc-number">3.</span> <span class="toc-text">相关环境配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#maven配置"><span class="toc-number">3.1.</span> <span class="toc-text">maven配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IDEA配置"><span class="toc-number">3.2.</span> <span class="toc-text">IDEA配置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hello-World！"><span class="toc-number">4.</span> <span class="toc-text">Hello World！</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建Maven工程"><span class="toc-number">4.1.</span> <span class="toc-text">创建Maven工程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#关于pom文件配置"><span class="toc-number">4.2.</span> <span class="toc-text">关于pom文件配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#主程序的编写"><span class="toc-number">4.3.</span> <span class="toc-text">主程序的编写</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#主程序测试"><span class="toc-number">4.4.</span> <span class="toc-text">主程序测试</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#快速创建SpringBoot项目-IDE"><span class="toc-number">5.</span> <span class="toc-text">快速创建SpringBoot项目(IDE)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#测试"><span class="toc-number">6.</span> <span class="toc-text">测试</span></a></li></ol>
         </div>
     
 </div>
