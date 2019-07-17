@@ -1,0 +1,308 @@
+
+<!DOCTYPE html>
+<html lang class="loading">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>SpringBoot日志 - 巷猫的博客</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate">
+    <meta name="keywords" content="Wbs,"> 
+    <meta name="description" content="日志 引言：
+
+开发时将关键数据打印在控制台，为了更好的展示便有了一些记录框架
+
+框架记录运行时信息；日志框架xxxlogging.jar;
+
+进一步的有了几个功能，异步，自动归档…..;xxxlo,"> 
+    <meta name="author" content="Wbs"> 
+    <link rel="alternative" href="atom.xml" title="巷猫的博客" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <link rel="stylesheet" href="/css/diaspora.css">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+</head>
+</html>
+<body class="loading">
+    <span id="config-title" style="display:none">巷猫的博客</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="icon-home image-icon" href="javascript:;" data-url="http://WZove.github.io"></a>
+    <div title="播放/暂停" class="icon-play"></div>
+    <h3 class="subtitle">SpringBoot日志</h3>
+    <div class="social">
+        <!--<div class="like-icon">-->
+            <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+        <!--</div>-->
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class="main">
+        <h1 class="title">SpringBoot日志</h1>
+        <div class="stuff">
+            <span>七月 17, 2019</span>
+            
+  <ul class="post-tags-list"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/SpringBoot/">SpringBoot</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h1 id="日志"><a href="#日志" class="headerlink" title="日志"></a>日志</h1><p> 引言：</p>
+<ol>
+<li><p>开发时将关键数据打印在控制台，为了更好的展示便有了一些记录框架</p>
+</li>
+<li><p>框架记录运行时信息；日志框架xxxlogging.jar;</p>
+</li>
+<li><p>进一步的有了几个功能，异步，自动归档…..;xxxlogging-good.jar</p>
+</li>
+<li><p>新的项目需要兼容，换上新的框架，修改之前的API；xxxlogging-perfect.jar</p>
+</li>
+<li><p>模仿JDBC-数据库驱动的原理</p>
+<p>写一个统一的接口层；日志门面（日志的一个抽象层）；logging-abstract.jar;给项目中导入具体的日志实现就行；我们之前的日志框架都是实现抽象层；</p>
+</li>
+</ol>
+<p>   市面上的日志框架</p>
+<p>   JUL,JCL,Jboss-logging，log back，log4j…..</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">日志门面(日志的抽象层)</th>
+<th style="text-align:center">日志实现</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><del><strong>JCL(Jakarta Commons Logging)</strong></del>，SLF4j（Simple Logging Facade for Java），<strong><del>jboss-logging</del></strong></td>
+<td style="text-align:center">Log4j，JUL,Log4j2,Logback</td>
+</tr>
+</tbody>
+</table>
+<p>左边选择一个接口，右边选择一个实现；</p>
+<p>日志门面：SLF4j；</p>
+<p>日志实现：Logback</p>
+<p>SpringBoot：底层用的Spring框架，默认使用JCL；==SpringBoot选用SLF4j和Logback==</p>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><h2 id="关于SLF4j"><a href="#关于SLF4j" class="headerlink" title="关于SLF4j"></a>关于SLF4j</h2><p>开发时，日志记录方法的调用，不应该直接调用日志实现类，而是调用日志抽象层里面的方法；</p>
+<p>给系统里面导入slf4j和logback的实现jar</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.slf4j.Logger;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.LoggerFactory;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWorld</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    Logger logger = LoggerFactory.getLogger(HelloWorld.class);</span><br><span class="line">    logger.info(<span class="string">"Hello World"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://s2.ax1x.com/2019/07/17/ZqL0Vs.png" alt="ZqL0Vs.png"></p>
+<p>每一个日志的实现框架都有自己的配置文件，使用SLF4j时，配置文件还是做成日志实现框架的配置文件；</p>
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>假设系统a中用的（SLF4j+logback）,Spring(Commons-logging),Hibernate(jboss-ligging)…..</p>
+<p>统一使用日志记录，别的框架也用SLF4j进行输出</p>
+<p><img src="https://s2.ax1x.com/2019/07/17/ZqOmiq.png" alt="ZqOmiq.png"></p>
+<p><strong>如何让系统中所有日志都统一到slf4j；</strong></p>
+<ol>
+<li><p>将系统中的其他日志框架排除出去</p>
+</li>
+<li><p>用中间包替换原有的日志框架</p>
+</li>
+<li><p>导入slf4j其他的实现</p>
+</li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.1.6.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">scope</span>&gt;</span>compile<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>SpringBoot使用它来做日志功能</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-logging<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.1.6.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">scope</span>&gt;</span>compile<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>总结：</p>
+<ol>
+<li>SpringBoot底层也是用slf4j——logback的方式进行日志记录</li>
+<li>SpringBoot也把其他的日志都替换成了slf4j</li>
+<li>中间替换包</li>
+<li>引入了其他框架，一定要把默认日志依赖移除</li>
+</ol>
+<p><strong>==SpringBoot能自动适配所有日志，引入其他框架时，只需要把框架依赖的日志框架移除就行==</strong></p>
+<h2 id="日志的使用"><a href="#日志的使用" class="headerlink" title="日志的使用"></a>日志的使用</h2><p>SpringBoot已经默认帮我们配好了日志</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//记录器</span></span><br><span class="line">Logger logger = LoggerFactory.getLogger(getClass());</span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">contextLoads</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">   <span class="comment">//日志级别</span></span><br><span class="line">   <span class="comment">//由低到高</span></span><br><span class="line">   <span class="comment">//可以调整输出日志级别</span></span><br><span class="line">   logger.trace(<span class="string">"这是trace日志"</span>);</span><br><span class="line">   logger.debug(<span class="string">"这是debug日志"</span>);</span><br><span class="line"></span><br><span class="line">   <span class="comment">//默认使用info级别的</span></span><br><span class="line">   logger.info(<span class="string">"这是info日志"</span>);</span><br><span class="line">   logger.warn(<span class="string">"这是warn日志"</span>);</span><br><span class="line">   logger.error(<span class="string">"这是error日志"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#修改输出日志级别</span><br><span class="line">logging.level.com.example=trace</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#默认在当前项目下输出指定文件，可加指定路径</span><br><span class="line">#logging.file=/spring/log指的是在根目录下创建spring文件夹和里面的log文件夹，默认使用spring.log作为文件</span><br><span class="line">logging.file=springboot.log</span><br><span class="line">#在控制台输出的日志格式</span><br><span class="line">logging.pattern.console=%d&#123;yyyy-MM-dd&#125; [%thread] %-5level %logger&#123;50&#125; - %msg%n</span><br><span class="line">#指定文件中日志输出格式</span><br><span class="line">logging.pattern.file=%d&#123;yyyy-MM-dd&#125; === [%thread] === %-5level === %logger&#123;50&#125; === %msg%n</span><br></pre></td></tr></table></figure>
+<p>具体格式可参照如下：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">参数</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">%p</td>
+<td style="text-align:center">输出日志信息优先级，即DEBUG，INFO，WARN，ERROR，FATAL</td>
+</tr>
+<tr>
+<td style="text-align:center">%d</td>
+<td style="text-align:center">输出日志时间点的日期或时间，默认格式为ISO8601，也可以在其后指定格式，比如%d{yyy MMM dd HH:mm:ss,SSS}，输出类似：2002年10月18日 22：10：28，921</td>
+</tr>
+<tr>
+<td style="text-align:center">%r</td>
+<td style="text-align:center">输出自应用启动到输出该log信息耗费的毫秒数</td>
+</tr>
+<tr>
+<td style="text-align:center">%c</td>
+<td style="text-align:center">输出日志信息所属的类目，通常就是所在类的全名</td>
+</tr>
+<tr>
+<td style="text-align:center">%t</td>
+<td style="text-align:center">输出产生该日志事件的线程名</td>
+</tr>
+<tr>
+<td style="text-align:center">%l</td>
+<td style="text-align:center">输出日志事件的发生位置，相当于%C.%M(%F:%L)的组合,包括类目名、发生的线程，以及在代码中的行数。举例：Testlog4.main(TestLog4.java:10)</td>
+</tr>
+<tr>
+<td style="text-align:center">%x</td>
+<td style="text-align:center">输出和当前线程相关联的NDC(嵌套诊断环境),尤其用到像java servlets这样的多客户多线程的应用中。</td>
+</tr>
+<tr>
+<td style="text-align:center">%%</td>
+<td style="text-align:center">输出一个”%”字符</td>
+</tr>
+<tr>
+<td style="text-align:center">%F</td>
+<td style="text-align:center">输出日志消息产生时所在的文件名称</td>
+</tr>
+<tr>
+<td style="text-align:center">%L</td>
+<td style="text-align:center">输出代码中的行号</td>
+</tr>
+<tr>
+<td style="text-align:center">%m</td>
+<td style="text-align:center">输出代码中指定的消息,产生的日志具体信息</td>
+</tr>
+<tr>
+<td style="text-align:center">%n</td>
+<td style="text-align:center">输出一个回车换行符，Windows平台为”\r\n”，Unix平台为”\n”输出日志信息换行</td>
+</tr>
+<tr>
+<td style="text-align:center">%20c</td>
+<td style="text-align:center">指定输出category的名称，最小的宽度是20，如果category的名称小于20的话，默认的情况下右对齐。</td>
+</tr>
+<tr>
+<td style="text-align:center">%-20c</td>
+<td style="text-align:center">指定输出category的名称，最小的宽度是20，如果category的名称小于20的话，”-”号指定左对齐。</td>
+</tr>
+<tr>
+<td style="text-align:center">%.30c</td>
+<td style="text-align:center">指定输出category的名称，最大的宽度是30，如果category的名称大于30的话，就会将左边多出的字符截掉，但小于30的话也不会有空格。</td>
+</tr>
+<tr>
+<td style="text-align:center">%20.30c</td>
+<td style="text-align:center">如果category的名称小于20就补空格，并且右对齐，如果其名称长于30字符，就从左边交远销出的字符截掉。</td>
+</tr>
+</tbody>
+</table>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="true">
+                <source type="audio/mpeg" src>
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        <li title="0" data-url="http://music.163.com/song/media/outer/url?id=526733895.mp3"></li>
+                    
+                        <li title="1" data-url="http://music.163.com/song/media/outer/url?id=1220787.mp3"></li>
+                    
+                        <li title="2" data-url="http://music.163.com/song/media/outer/url?id=1220822.mp3"></li>
+                    
+                        <li title="3" data-url="http://music.163.com/song/media/outer/url?id=1221805.mp3"></li>
+                    
+                        <li title="4" data-url="http://music.163.com/song/media/outer/url?id=785902.mp3"></li>
+                    
+                </ul>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link" data-ae="true" data-ci data-cs data-r data-o data-a data-d="false">查看评论</div>
+
+
+    </div>
+    
+        <div class="side">
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#日志"><span class="toc-number">1.</span> <span class="toc-text">日志</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#使用"><span class="toc-number">2.</span> <span class="toc-text">使用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#关于SLF4j"><span class="toc-number">2.1.</span> <span class="toc-text">关于SLF4j</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#问题"><span class="toc-number">2.2.</span> <span class="toc-text">问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#日志的使用"><span class="toc-number">2.3.</span> <span class="toc-text">日志的使用</span></a></li></ol></li></ol>
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</html>
