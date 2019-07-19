@@ -1,0 +1,276 @@
+
+<!DOCTYPE html>
+<html lang class="loading">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>SpringBoot入门 - 巷猫的博客</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate">
+    <meta name="keywords" content="Wbs,"> 
+    <meta name="description" content="Web开发使用SpringBoot：
+
+创建SpringBoot应用，选择我们需要的模块
+SpringBoot已经默认将这些场景配置好了，只需要在配置文件中指定少量配置就可以运行起来
+自己编写业务代,"> 
+    <meta name="author" content="Wbs"> 
+    <link rel="alternative" href="atom.xml" title="巷猫的博客" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <link rel="stylesheet" href="/css/diaspora.css">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+</head>
+</html>
+<body class="loading">
+    <span id="config-title" style="display:none">巷猫的博客</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="icon-home image-icon" href="javascript:;" data-url="http://WZove.github.io"></a>
+    <div title="播放/暂停" class="icon-play"></div>
+    <h3 class="subtitle">SpringBoot入门</h3>
+    <div class="social">
+        <!--<div class="like-icon">-->
+            <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+        <!--</div>-->
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class="main">
+        <h1 class="title">SpringBoot入门</h1>
+        <div class="stuff">
+            <span>七月 18, 2019</span>
+            
+  <ul class="post-tags-list"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/SpringBoot/">SpringBoot</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h1 id="Web开发"><a href="#Web开发" class="headerlink" title="Web开发"></a>Web开发</h1><p>使用SpringBoot：</p>
+<ol>
+<li>创建SpringBoot应用，选择我们需要的模块</li>
+<li>SpringBoot已经默认将这些场景配置好了，只需要在配置文件中指定少量配置就可以运行起来</li>
+<li>自己编写业务代码</li>
+</ol>
+<h2 id="自动配置原理"><a href="#自动配置原理" class="headerlink" title="自动配置原理"></a>自动配置原理</h2><p>这个场景SpringBoot帮我们配置了什么？能不能修改？能修改哪些配置？能不能扩展？</p>
+<p>xxxAutoConfiguration就是容器中自动配置的组件</p>
+<p>xxxProperties配置类来封装配置文件的内容</p>
+<h2 id="静态资源的映射"><a href="#静态资源的映射" class="headerlink" title="静态资源的映射"></a>静态资源的映射</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addResourceHandlers</span><span class="params">(ResourceHandlerRegistry registry)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">if</span> (!<span class="keyword">this</span>.resourceProperties.isAddMappings()) &#123;</span><br><span class="line">                logger.debug(<span class="string">"Default resource handling disabled"</span>);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                Duration cachePeriod = <span class="keyword">this</span>.resourceProperties.getCache().getPeriod();</span><br><span class="line">                CacheControl cacheControl = <span class="keyword">this</span>.resourceProperties.getCache().getCachecontrol().toHttpCacheControl();</span><br><span class="line">                <span class="keyword">if</span> (!registry.hasMappingForPattern(<span class="string">"/webjars/**"</span>)) &#123;</span><br><span class="line">                    <span class="keyword">this</span>.customizeResourceHandlerRegistration(registry.addResourceHandler(<span class="keyword">new</span> String[]&#123;<span class="string">"/webjars/**"</span>&#125;).addResourceLocations(<span class="keyword">new</span> String[]&#123;          <span class="string">"classpath:/METAINF/resources/webjars/"</span>&#125;).setCachePeriod(<span class="keyword">this</span>.getSeconds(cachePeriod)).setCacheControl(cacheControl));</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                String staticPathPattern = <span class="keyword">this</span>.mvcProperties.getStaticPathPattern();</span><br><span class="line">                <span class="keyword">if</span> (!registry.hasMappingForPattern(staticPathPattern)) &#123;</span><br><span class="line">                    <span class="keyword">this</span>.customizeResourceHandlerRegistration(registry.addResourceHandler(<span class="keyword">new</span> String[]&#123;staticPathPattern&#125;).addResourceLocations(getResourceLocations(<span class="keyword">this</span>.resourceProperties.getStaticLocations())).setCachePeriod(<span class="keyword">this</span>.getSeconds(cachePeriod)).setCacheControl(cacheControl));</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>==所以/Webjars/**都去classpath:/META-INF/resoures/webJars/找资源；webjars：以jar包的方式引入静态资源；==</li>
+</ol>
+<p>参考：<a href="https://www.webjars.org/" target="_blank" rel="noopener">https://www.webjars.org/</a> </p>
+<p>pom文件中引入</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--引入jquery-webjar模块--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.webjars<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jquery<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.3.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>测试：<a href="http://localhost:8080/webjars/jquery/3.3.1/jquery.js" target="_blank" rel="noopener">http://localhost:8080/webjars/jquery/3.3.1/jquery.js</a> </p>
+<ol start="2">
+<li>==“/**”访问当前项目的任何资源（静态资源的文件夹）==</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&quot;classpath:/META-INF/resources/&quot;, </span><br><span class="line">&quot;classpath:/resources/&quot;, </span><br><span class="line">&quot;classpath:/static/&quot;, </span><br><span class="line">&quot;classpath:/public/&quot;,</span><br><span class="line">&quot;/&quot;当前项目的根路径</span><br></pre></td></tr></table></figure>
+<p>测试：<a href="http://localhost:8080/assets/css/bootstrap.css" target="_blank" rel="noopener">http://localhost:8080/assets/css/bootstrap.css</a></p>
+<ol start="3">
+<li>==欢迎页映射，静态资源文件夹下的所有index.html页；被“/**”映射==</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> WelcomePageHandlerMapping <span class="title">welcomePageHandlerMapping</span><span class="params">(ApplicationContext applicationContext)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> WelcomePageHandlerMapping(<span class="keyword">new</span> TemplateAvailabilityProviders(applicationContext), applicationContext, <span class="keyword">this</span>.getWelcomePage(), <span class="keyword">this</span>.mvcProperties.getStaticPathPattern());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>==配置喜欢的图标，所有的**/favicon.ico都是在静态资源文件下找==</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"> <span class="meta">@Configuration</span></span><br><span class="line">        <span class="meta">@ConditionalOnProperty</span>(</span><br><span class="line">            value = &#123;<span class="string">"spring.mvc.favicon.enabled"</span>&#125;,</span><br><span class="line">            matchIfMissing = <span class="keyword">true</span></span><br><span class="line">        )</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">FaviconConfiguration</span> <span class="keyword">implements</span> <span class="title">ResourceLoaderAware</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> ResourceProperties resourceProperties;</span><br><span class="line">    <span class="keyword">private</span> ResourceLoader resourceLoader;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">FaviconConfiguration</span><span class="params">(ResourceProperties resourceProperties)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.resourceProperties = resourceProperties;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setResourceLoader</span><span class="params">(ResourceLoader resourceLoader)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.resourceLoader = resourceLoader;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> SimpleUrlHandlerMapping <span class="title">faviconHandlerMapping</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        SimpleUrlHandlerMapping mapping = <span class="keyword">new</span> SimpleUrlHandlerMapping();</span><br><span class="line">        mapping.setOrder(-<span class="number">2147483647</span>);</span><br><span class="line">        mapping.setUrlMap(Collections.singletonMap(<span class="string">"**/favicon.ico"</span>, <span class="keyword">this</span>.faviconRequestHandler()));</span><br><span class="line">        <span class="keyword">return</span> mapping;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ResourceHttpRequestHandler <span class="title">faviconRequestHandler</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ResourceHttpRequestHandler requestHandler = <span class="keyword">new</span> ResourceHttpRequestHandler();</span><br><span class="line">        requestHandler.setLocations(<span class="keyword">this</span>.resolveFaviconLocations());</span><br><span class="line">        <span class="keyword">return</span> requestHandler;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> List&lt;Resource&gt; <span class="title">resolveFaviconLocations</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        String[] staticLocations = WebMvcAutoConfiguration.WebMvcAutoConfigurationAdapter.getResourceLocations(<span class="keyword">this</span>.resourceProperties.getStaticLocations());</span><br><span class="line">        List&lt;Resource&gt; locations = <span class="keyword">new</span> ArrayList(staticLocations.length + <span class="number">1</span>);</span><br><span class="line">        Stream var10000 = Arrays.stream(staticLocations);</span><br><span class="line">        ResourceLoader var10001 = <span class="keyword">this</span>.resourceLoader;</span><br><span class="line">        <span class="keyword">this</span>.resourceLoader.getClass();</span><br><span class="line">        var10000.map(var10001::getResource).forEach(locations::add);</span><br><span class="line">        locations.add(<span class="keyword">new</span> ClassPathResource(<span class="string">"/"</span>));</span><br><span class="line">        <span class="keyword">return</span> Collections.unmodifiableList(locations);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意：若想使用自己配的路径只需要在application.properties中配置相应路径即可，如下所示,多个路径用，隔开</p>
+<p>强调：在使用您配置的路径后，默认配置的则不生效了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spring.resources.static-locations=classpath:/hello/,classpath/test/</span><br></pre></td></tr></table></figure>
+<h2 id="模板引擎"><a href="#模板引擎" class="headerlink" title="模板引擎"></a>模板引擎</h2><p>jsp，Velocity，Freemarker，Thymeleaf；这些都是模板引擎</p>
+<p>SpringBoot推荐的<a href="https://www.thymeleaf.org/" target="_blank" rel="noopener">Thymeleaf</a>；</p>
+<h3 id="引入Thymenleaf"><a href="#引入Thymenleaf" class="headerlink" title="引入Thymenleaf"></a>引入Thymenleaf</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--引入模板引擎--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-thymeleaf<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>切换版本</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">java.version</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">java.version</span>&gt;</span></span><br><span class="line">       <span class="comment">&lt;!--thymeleaf3版本--&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">thymeleaf.version</span>&gt;</span>3.0.11.RELEASE<span class="tag">&lt;/<span class="name">thymeleaf.version</span>&gt;</span></span><br><span class="line">       <span class="comment">&lt;!--布局功能的支持程序，thymeleaf3主程序需要layout2以上版本--&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">thymeleaf-layout-dialect.version</span>&gt;</span>2.1.1<span class="tag">&lt;/<span class="name">thymeleaf-layout-dialect.version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="Thymeleaf使用-amp-语法"><a href="#Thymeleaf使用-amp-语法" class="headerlink" title="Thymeleaf使用&amp;语法"></a>Thymeleaf使用&amp;语法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ConfigurationProperties</span>(</span><br><span class="line">    prefix = <span class="string">"spring.thymeleaf"</span></span><br><span class="line">)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThymeleafProperties</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Charset DEFAULT_ENCODING;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String DEFAULT_PREFIX = <span class="string">"classpath:/templates/"</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String DEFAULT_SUFFIX = <span class="string">".html"</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">boolean</span> checkTemplate = <span class="keyword">true</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">boolean</span> checkTemplateLocation = <span class="keyword">true</span>;</span><br><span class="line">    <span class="keyword">private</span> String prefix = <span class="string">"classpath:/templates/"</span>;</span><br><span class="line">    <span class="keyword">private</span> String suffix = <span class="string">".html"</span>;</span><br><span class="line">    <span class="keyword">private</span> String mode = <span class="string">"HTML"</span>;</span><br><span class="line">    <span class="comment">//只要我们把HTML页面放到classpath:/templates/下，就能自动渲染</span></span><br></pre></td></tr></table></figure>
+<ol>
+<li>导入thymeleaf的命名空间</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span> <span class="attr">xmlns:th</span>=<span class="string">"http://www.thymeleaf.org"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>使用thymeleaf语法</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">th:text</span>=<span class="string">"$&#123;hello1&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="语法规则"><a href="#语法规则" class="headerlink" title="语法规则"></a>语法规则</h3><ol>
+<li>th:text;改变当前元素里面的文本内容</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Feature</th>
+<th style="text-align:center">Attributes</th>
+<th style="text-align:center">jsp（说明）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Fragment inclusion</td>
+<td style="text-align:center">th:insert，th:replace</td>
+<td style="text-align:center">jsp:include</td>
+</tr>
+<tr>
+<td style="text-align:center">Fragment iteration</td>
+<td style="text-align:center">th:each</td>
+<td style="text-align:center">c:forEach</td>
+</tr>
+<tr>
+<td style="text-align:center">Conditional evaluation</td>
+<td style="text-align:center">th:ifth,:unlessth,:switchth,:case</td>
+<td style="text-align:center">c:if</td>
+</tr>
+<tr>
+<td style="text-align:center">Local variable definition</td>
+<td style="text-align:center">th:object,th:with</td>
+<td style="text-align:center">c:set</td>
+</tr>
+<tr>
+<td style="text-align:center">General attribute modification</td>
+<td style="text-align:center">th:attr,th:attrprepend,th:attrappend</td>
+<td style="text-align:center">任意属性修改，支持prepend，append</td>
+</tr>
+<tr>
+<td style="text-align:center">Specific attribute modification</td>
+<td style="text-align:center">th:value，th:href，th:src</td>
+<td style="text-align:center">修改指定属性默认的值</td>
+</tr>
+<tr>
+<td style="text-align:center">Text (tag body modification)</td>
+<td style="text-align:center">th:text（转义特殊字符），th:utext（不转义特殊字符）</td>
+<td style="text-align:center">修改标签体内容</td>
+</tr>
+<tr>
+<td style="text-align:center">Fragment specification</td>
+<td style="text-align:center">th:fragment</td>
+<td style="text-align:center">声明片段</td>
+</tr>
+<tr>
+<td style="text-align:center">Fragment removal</td>
+<td style="text-align:center">th:remove</td>
+<td style="text-align:center">移除片段</td>
+</tr>
+</tbody>
+</table>
+<ol start="2">
+<li>表达式</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">Simple expressions:</span><br><span class="line">    Variable Expressions: $&#123;...&#125;:获取变量值</span><br><span class="line">    Selection Variable Expressions: *&#123;...&#125;</span><br><span class="line">    Message Expressions: #&#123;...&#125;</span><br><span class="line">    Link URL Expressions: @&#123;...&#125;</span><br><span class="line">    Fragment Expressions: ~&#123;...&#125;</span><br><span class="line">Literals</span><br><span class="line">    Text literals: &apos;one text&apos; , &apos;Another one!&apos; ,…</span><br><span class="line">    Number literals: 0 , 34 , 3.0 , 12.3 ,…</span><br><span class="line">    Boolean literals: true , false</span><br><span class="line">    Null literal: null</span><br><span class="line">    Literal tokens: one , sometext , main ,…</span><br><span class="line">Text operations:</span><br><span class="line">    String concatenation: +</span><br><span class="line">    Literal substitutions: |The name is $&#123;name&#125;|</span><br><span class="line">    Arithmetic operations:</span><br><span class="line">    Binary operators: + , - , * , / , %</span><br><span class="line">    Minus sign (unary operator): -</span><br><span class="line">Boolean operations:</span><br><span class="line">    Binary operators: and , or</span><br><span class="line">    Boolean negation (unary operator): ! , not</span><br><span class="line">    Comparisons and equality:</span><br><span class="line">    Comparators: &gt; , &lt; , &gt;= , &lt;= ( gt , lt , ge , le )</span><br><span class="line">    Equality operators: == , != ( eq , ne )</span><br><span class="line">    Conditional operators:</span><br><span class="line">    If-then: (if) ? (then)</span><br><span class="line">    If-then-else: (if) ? (then) : (else)</span><br><span class="line">    Default: (value) ?: (defaultvalue)</span><br><span class="line">Special tokens:</span><br><span class="line">Page 17 of 106</span><br><span class="line">    No-Operation: _</span><br></pre></td></tr></table></figure>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="true">
+                <source type="audio/mpeg" src>
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        <li title="0" data-url="http://music.163.com/song/media/outer/url?id=526733895.mp3"></li>
+                    
+                        <li title="1" data-url="http://music.163.com/song/media/outer/url?id=1220787.mp3"></li>
+                    
+                        <li title="2" data-url="http://music.163.com/song/media/outer/url?id=1220822.mp3"></li>
+                    
+                        <li title="3" data-url="http://music.163.com/song/media/outer/url?id=1221805.mp3"></li>
+                    
+                        <li title="4" data-url="http://music.163.com/song/media/outer/url?id=785902.mp3"></li>
+                    
+                </ul>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link" data-ae="true" data-ci data-cs data-r data-o data-a data-d="false">查看评论</div>
+
+
+    </div>
+    
+        <div class="side">
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Web开发"><span class="toc-number">1.</span> <span class="toc-text">Web开发</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#自动配置原理"><span class="toc-number">1.1.</span> <span class="toc-text">自动配置原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#静态资源的映射"><span class="toc-number">1.2.</span> <span class="toc-text">静态资源的映射</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#模板引擎"><span class="toc-number">1.3.</span> <span class="toc-text">模板引擎</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#引入Thymenleaf"><span class="toc-number">1.3.1.</span> <span class="toc-text">引入Thymenleaf</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Thymeleaf使用-amp-语法"><span class="toc-number">1.3.2.</span> <span class="toc-text">Thymeleaf使用&amp;语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#语法规则"><span class="toc-number">1.3.3.</span> <span class="toc-text">语法规则</span></a></li></ol></li></ol></li></ol>
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</html>
